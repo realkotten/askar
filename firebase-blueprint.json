@@ -1,0 +1,71 @@
+{
+  "entities": {
+    "Certificate": {
+      "title": "Assay Certificate",
+      "description": "Tested gold and silver gold assay certificate details.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "certificateNo": { "type": "string" },
+        "ownerName": { "type": "string" },
+        "assayDate": { "type": "string" },
+        "metalType": { "type": "string", "enum": ["gold", "silver"] },
+        "declaredPurity": { "type": "string" },
+        "testedPurity": { "type": "number" },
+        "weight": { "type": "number" },
+        "inspector": { "type": "string" },
+        "status": { "type": "string", "enum": ["approved", "rejected", "pending"] },
+        "itemType": { "type": "string" },
+        "labBranch": { "type": "string" },
+        "qrValue": { "type": "string" },
+        "remarks": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id",
+        "certificateNo",
+        "ownerName",
+        "assayDate",
+        "metalType",
+        "declaredPurity",
+        "testedPurity",
+        "weight",
+        "inspector",
+        "status",
+        "itemType",
+        "labBranch",
+        "qrValue",
+        "createdAt"
+      ]
+    },
+    "GalleryItem": {
+      "title": "Gallery Photo Item",
+      "description": "Premium 3D showcase image with customized captions and metadata.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "imageUrl": { "type": "string" },
+        "description": { "type": "string" },
+        "createdAt": { "type": "string", "format": "date-time" }
+      },
+      "required": [
+        "id",
+        "title",
+        "imageUrl",
+        "createdAt"
+      ]
+    }
+  },
+  "firestore": {
+    "certificates": {
+      "schema": "Certificate",
+      "description": "Collection of verified assay certificates indexed by hallmark code."
+    },
+    "gallery": {
+      "schema": "GalleryItem",
+      "description": "Showcase items with pictures, titles, and descriptions of golden craftsmanship."
+    }
+  }
+}

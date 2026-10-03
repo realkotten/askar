@@ -1,0 +1,19 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Default catch-all: deny all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // Allow read/write for certificates
+    match /certificates/{certificateId} {
+      allow read, write: if true;
+    }
+
+    // Allow read/write for gallery items
+    match /gallery/{itemId} {
+      allow read, write: if true;
+    }
+  }
+}

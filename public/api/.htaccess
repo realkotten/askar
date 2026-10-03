@@ -1,0 +1,20 @@
+# 🛡️ Apache/LiteSpeed URL Rewriting & Security Gate for standard cPanel hosts
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    
+    # If the requested file or directory does not exist, route it to index.php
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# Block unauthorized visitors from downloading the JSON flat data database file directly
+<Files "data.json">
+    <IfModule mod_authz_core.c>
+        Require all denied
+    </IfModule>
+    <IfModule !mod_authz_core.c>
+        Order deny,allow
+        Deny from all
+    </IfModule>
+</Files>
